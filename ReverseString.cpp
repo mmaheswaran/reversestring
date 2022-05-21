@@ -19,7 +19,7 @@ void second_method(string &words) {
     int l = words.size();
     int lastindex=words.size()-1;
 
-    for (std::string::size_type i = 0; i < floor(l*0.5); i++) {
+    for (int i = 0; i < floor(l*0.5); i++) {
         std::swap(rewords[i], rewords[lastindex-i]);
 
     }
@@ -30,17 +30,17 @@ void second_method(string &words) {
 
 void third_method(string &words) {
 
-    cout << words << '\n';
+    string rewords(words);
     int l = words.size();
     int lastindex=words.size()-1;
 
-    for (std::string::size_type i = 0; i < floor(l*0.5); i++) {
-        char tmp = words[i];
-        words[i] = words[lastindex-i];
-        words[lastindex-i] = tmp;
+    for (int i = 0; i < floor(l*0.5); i++) {
+        char tmp = rewords[i];
+        rewords[i] = rewords[lastindex-i];
+        rewords[lastindex-i] = tmp;
 
     }
-    cout << words << '\n';
+    cout << words << '\n' << rewords << '\n';
 
 }
 
