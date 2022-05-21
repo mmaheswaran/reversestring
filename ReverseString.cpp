@@ -54,6 +54,7 @@ int main(int argc, char **argv) {
     for (auto i = strtok(&words[0], " "); i != NULL; i = strtok(NULL, " "))
         tokens.push_back(i);
 
+    //First method
     auto start = std::chrono::high_resolution_clock::now();
     for (vector<string>::iterator t=tokens.begin(); t!=tokens.end(); ++t) {
         first_method(*t);
@@ -63,6 +64,7 @@ int main(int argc, char **argv) {
     cout << "\nfirst_method() elapsed time is " << int_s.count() << " microseconds" << endl;
 
 
+    //Second method
     start = std::chrono::high_resolution_clock::now();
     for (vector<string>::iterator t=tokens.begin(); t!=tokens.end(); ++t) {
         second_method(*t);
@@ -72,7 +74,7 @@ int main(int argc, char **argv) {
     cout << "\nsecond_method() elapsed time is " << int_s.count() << " microseconds" << endl;
     start = std::chrono::high_resolution_clock::now();
 
-
+    //Third method
     start = std::chrono::high_resolution_clock::now();
     for (vector<string>::iterator t=tokens.begin(); t!=tokens.end(); ++t) {
         third_method(*t);
