@@ -66,6 +66,5 @@ int main(int argc, char **argv) {
     int_s = chrono::duration_cast<chrono::microseconds>(end - start);
     cout << "third_method() elapsed time is " << int_s.count() << " microseconds" << endl;
 
-
-	return 0;
+    return 0;
 }
