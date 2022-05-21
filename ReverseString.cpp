@@ -2,69 +2,86 @@
 #include <string>
 #include <chrono>
 #include <math.h>
+#include <vector>
 using namespace std;
 
-void first_method(string &words) {
+void first_method(string &word) {
 
-    string rewords(words);
+    string reword(word);
 
-    reverse(rewords.begin(), rewords.end());
-    cout << words << '\n' << rewords << '\n';
-
-}
-
-void second_method(string &words) {
-
-    string rewords(words);
-    int l = words.size();
-    int lastindex=words.size()-1;
-
-    for (int i = 0; i < floor(l*0.5); i++) {
-        std::swap(rewords[i], rewords[lastindex-i]);
-
-    }
-
-    cout << words << '\n' << rewords << '\n';
+    reverse(reword.begin(), reword.end());
+    cout << reword << ' ';
 
 }
 
-void third_method(string &words) {
+void second_method(string &word) {
 
-    string rewords(words);
-    int l = words.size();
-    int lastindex=words.size()-1;
+    string reword(word);
+    int l = word.size();
+    int lastindex=word.size()-1;
 
     for (int i = 0; i < floor(l*0.5); i++) {
-        char tmp = rewords[i];
-        rewords[i] = rewords[lastindex-i];
-        rewords[lastindex-i] = tmp;
+        std::swap(reword[i], reword[lastindex-i]);
 
     }
-    cout << words << '\n' << rewords << '\n';
+
+    cout << reword << ' ';
+}
+
+void third_method(string &word) {
+
+    string reword(word);
+    int l = word.size();
+    int lastindex=word.size()-1;
+
+    for (int i = 0; i < floor(l*0.5); i++) {
+        char tmp = reword[i];
+        reword[i] = reword[lastindex-i];
+        reword[lastindex-i] = tmp;
+
+    }
+    cout << reword << ' ';
 
 }
 
 
 int main(int argc, char **argv) {
+
     string words("day and night");
+    cout << words << '\n';
+
+    vector<string> tokens;
+    for (auto i = strtok(&words[0], " "); i != NULL; i = strtok(NULL, " "))
+        tokens.push_back(i);
 
     auto start = std::chrono::high_resolution_clock::now();
-    first_method(words);
+    for (vector<string>::iterator t=tokens.begin(); t!=tokens.end(); ++t) {
+        first_method(*t);
+    }
     auto end = chrono::high_resolution_clock::now();
     auto int_s = chrono::duration_cast<chrono::microseconds>(end - start);
-    cout << "first_method() elapsed time is " << int_s.count() << " microseconds" << endl;
+    cout << "\nfirst_method() elapsed time is " << int_s.count() << " microseconds" << endl;
+
 
     start = std::chrono::high_resolution_clock::now();
-    second_method(words);
+    for (vector<string>::iterator t=tokens.begin(); t!=tokens.end(); ++t) {
+        second_method(*t);
+    }
     end = chrono::high_resolution_clock::now();
     int_s = chrono::duration_cast<chrono::microseconds>(end - start);
-    cout << "second_method() elapsed time is " << int_s.count() << " microseconds" << endl;
+    cout << "\nsecond_method() elapsed time is " << int_s.count() << " microseconds" << endl;
+    start = std::chrono::high_resolution_clock::now();
+
 
     start = std::chrono::high_resolution_clock::now();
-    third_method(words);
+    for (vector<string>::iterator t=tokens.begin(); t!=tokens.end(); ++t) {
+        third_method(*t);
+    }
     end = chrono::high_resolution_clock::now();
     int_s = chrono::duration_cast<chrono::microseconds>(end - start);
-    cout << "third_method() elapsed time is " << int_s.count() << " microseconds" << endl;
+    cout << "\nthird_method() elapsed time is " << int_s.count() << " microseconds" << endl;
+    start = std::chrono::high_resolution_clock::now();
+
 
     return 0;
 }
